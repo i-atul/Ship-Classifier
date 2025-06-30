@@ -1,0 +1,11 @@
+[project]
+name = "src"
+version = "1.0.0"
+description = "Image classification"
+authors = [{name = "Atul Singh", email = "join.atuls@gmail.com"}]
+
+[tool.setuptools]
+packages = {find = {}}
+
+[tool.setuptools.dynamic]
+dependencies = {file = "requirements.txt"}
