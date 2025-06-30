@@ -25,6 +25,12 @@ TRAINED_MODEL_PATH: str = "model.h5"
 TRAINER_MODEL_PARAMS: str = os.path.join("config", "params.yaml")
 
 
+# Model Evaluation
+MLFLOW_URI: str = "https://dagshub.com/i-atul/Ship-Classifier.mlflow"
+DAGSHUB_REPO_OWNER: str = "i-atul"
+DAGSHUB_REPO_NAME: str = "Ship-Classifier"
+
+
 # App Deployment
 APP_HOST = "0.0.0.0"
 APP_PORT = 3010

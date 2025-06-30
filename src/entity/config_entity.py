@@ -49,8 +49,11 @@ class TrainingConfig:
 @dataclass(frozen=True)
 class EvaluationConfig:
     path_of_model: Path = Path(os.path.join(training_pipeline_config.artifact_dir, TRAINING_ROOT_DIR, TRAINED_MODEL_PATH))
-    training_data: Path = Path(os.path.join(training_pipeline_config.artifact_dir, DATA_INGESTION_ROOT_DIR))
-    all_params: dict = None
-    mlflow_uri: str = None
-    params_image_size: list = None
-    params_batch_size: int = None
+    training_data: Path = Path(os.path.join(training_pipeline_config.artifact_dir, DATA_INGESTION_ROOT_DIR, DATA_INGESTION_UNZIP_DIR))
+    all_params: dict = params
+    mlflow_uri: str = MLFLOW_URI
+    dagshub_repo_owner: str = DAGSHUB_REPO_OWNER
+    dagshub_repo_name: str = DAGSHUB_REPO_NAME
+    params_image_size: list = params.IMAGE_SIZE
+    params_batch_size: int = params.BATCH_SIZE
+    params_classes: int = params.CLASSES
