@@ -69,3 +69,10 @@ class DataIngestion:
        
         dataset = MyImageDataset(valid_image_paths, transform=default_transform)
 
+if __name__ == "__main__":
+    from src.entity.config_entity import DataIngestionConfig
+    config = DataIngestionConfig()
+    ingestion = DataIngestion(config)
+    ingestion.download_file()
+    ingestion.extract_zip_file()
+

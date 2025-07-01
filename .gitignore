@@ -6,10 +6,11 @@ __pycache__/
 # C extensions
 *.so
 
-artifacts/*
-build/*
-dist/*
-logs/*
+artifacts/
+build/
+dist/
+logs/
+uploads/
 
 
 # Distribution / packaging

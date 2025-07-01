@@ -33,5 +33,5 @@ DAGSHUB_REPO_NAME: str = "Ship-Classifier"
 
 # App Deployment
 APP_HOST = "0.0.0.0"
-APP_PORT = 3010
+APP_PORT = 5000
 DEBUG = True

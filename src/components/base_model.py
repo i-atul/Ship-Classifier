@@ -50,3 +50,10 @@ class PrepareBaseModel:
         path.parent.mkdir(parents=True, exist_ok=True)
         torch.save(model.state_dict(), str(path))
 
+
+if __name__ == "__main__":
+    from src.entity.config_entity import PrepareBaseModelConfig
+    config = PrepareBaseModelConfig()
+    base_model = PrepareBaseModel(config)
+    base_model.get_base_model()
+

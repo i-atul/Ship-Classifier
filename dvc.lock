@@ -1,0 +1,115 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/components/data_ingestion.py
+    deps:
+    - path: params.yaml
+      hash: md5
+      md5: 8e0b962c51c6ce3423a6a949c69a625a
+      size: 158
+    - path: src/components/data_ingestion.py
+      hash: md5
+      md5: 836a925835b9e45fd77e82b7e2abd3cf
+      size: 2745
+    outs:
+    - path: artifacts/data_ingestion/data.zip
+      hash: md5
+      md5: 9b1767dccd1946025eb02f2e226d6b55
+      size: 140258914
+    - path: artifacts/data_ingestion/data_ingestion
+      hash: md5
+      md5: 73ac0b2fe5ad5ea770819c52bd00e25b.dir
+      size: 141219453
+      nfiles: 306
+  prepare_base_model:
+    cmd: python src/components/base_model.py
+    deps:
+    - path: params.yaml
+      hash: md5
+      md5: 8e0b962c51c6ce3423a6a949c69a625a
+      size: 158
+    - path: src/components/base_model.py
+      hash: md5
+      md5: 3ccec23b5e9f20fd221e6cc6853b2aed
+      size: 2238
+    params:
+      params.yaml:
+        CLASSES: 3
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+        INCLUDE_TOP: false
+        LEARNING_RATE: 0.01
+        WEIGHTS: imagenet
+    outs:
+    - path: artifacts/prepare_base_model/base_model.h5
+      hash: md5
+      md5: eb0ee57bf77e759a5e134eb3d0cbd130
+      size: 553441845
+  training:
+    cmd: python src/components/model_trainer.py
+    deps:
+    - path: artifacts/data_ingestion/data_ingestion
+      hash: md5
+      md5: 73ac0b2fe5ad5ea770819c52bd00e25b.dir
+      size: 141219453
+      nfiles: 306
+    - path: artifacts/prepare_base_model/base_model.h5
+      hash: md5
+      md5: eb0ee57bf77e759a5e134eb3d0cbd130
+      size: 553441845
+    - path: params.yaml
+      hash: md5
+      md5: 8e0b962c51c6ce3423a6a949c69a625a
+      size: 158
+    - path: src/components/model_trainer.py
+      hash: md5
+      md5: 383e7248ea82715439e9d06b98b5dd01
+      size: 5138
+    params:
+      params.yaml:
+        AUGMENTATION: true
+        BATCH_SIZE: 18
+        EPOCHS: 1
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+    outs:
+    - path: artifacts/training/model.h5
+      hash: md5
+      md5: 9917625c0ba710303fad2114e52eb866
+      size: 537100791
+  evaluation:
+    cmd: python src/components/model_evaluation.py
+    deps:
+    - path: artifacts/data_ingestion/data_ingestion
+      hash: md5
+      md5: 73ac0b2fe5ad5ea770819c52bd00e25b.dir
+      size: 141219453
+      nfiles: 306
+    - path: artifacts/training/model.h5
+      hash: md5
+      md5: 9917625c0ba710303fad2114e52eb866
+      size: 537100791
+    - path: params.yaml
+      hash: md5
+      md5: 8e0b962c51c6ce3423a6a949c69a625a
+      size: 158
+    - path: src/components/model_evaluation.py
+      hash: md5
+      md5: 4e55ccf382f2a48a2b15465425269d36
+      size: 3546
+    params:
+      params.yaml:
+        BATCH_SIZE: 18
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+    outs:
+    - path: scores.json
+      hash: md5
+      md5: 73d84b84a01bba90723cae886f40f14a
+      size: 73

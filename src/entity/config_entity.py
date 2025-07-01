@@ -57,3 +57,10 @@ class EvaluationConfig:
     params_image_size: list = params.IMAGE_SIZE
     params_batch_size: int = params.BATCH_SIZE
     params_classes: int = params.CLASSES
+
+@dataclass(frozen=True)
+class DeploymentConfig:
+    app_host : str = APP_HOST
+    app_port: int = APP_PORT
+    debug: bool = DEBUG
+    

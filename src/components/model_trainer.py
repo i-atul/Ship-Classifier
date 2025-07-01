@@ -101,3 +101,12 @@ class Training:
         path = Path(path)
         path.parent.mkdir(parents=True, exist_ok=True)
         torch.save(model.state_dict(), str(path))
+
+
+if __name__ == "__main__":
+    from src.entity.config_entity import TrainingConfig
+    config = TrainingConfig()
+    trainer = Training(config)
+    trainer.get_base_model()
+    trainer.train_valid_loader()
+    trainer.train()

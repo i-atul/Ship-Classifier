@@ -76,11 +76,11 @@ class Evaluation:
             mlflow.log_metric('accuracy', self.score[1])
 
 
-# if __name__ == "__main__":
-#     from src.entity.config_entity import EvaluationConfig
-#     config = EvaluationConfig()
-#     evaluator = Evaluation(config)
-#     evaluator.evaluate()
-#     evaluator.save_score()
-#     evaluator.log_to_mlflow()
+if __name__ == "__main__":
+    from src.entity.config_entity import EvaluationConfig
+    config = EvaluationConfig()
+    evaluator = Evaluation(config)
+    evaluator.evaluate()
+    evaluator.save_score()
+    evaluator.log_to_mlflow()
 
