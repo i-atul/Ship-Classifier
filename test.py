@@ -1,7 +1,4 @@
-from pathlib import Path
-from src.utils.main_utils import read_yaml
-
-
-params = read_yaml(Path("config/params.yaml"))
-a = params.params.CLASSES
-print(a)
+import torch
+print(torch.cuda.is_available())
+print(torch.cuda.device_count())
+print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else "No CUDA device")
