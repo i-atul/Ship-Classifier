@@ -1,9 +1,10 @@
 import os
 from src.constants import *
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from src.utils.main_utils import read_yaml
+from box import BoxList
 
 params = read_yaml(Path("params.yaml"))
 
@@ -27,7 +28,7 @@ class PrepareBaseModelConfig:
     root_dir: Path = Path(os.path.join(training_pipeline_config.artifact_dir, PREPARE_BASE_MODEL_ROOT_DIR))
     base_model_path: Path = root_dir / PREPARE_BASE_MODEL_BASE_MODEL_PATH
     updated_base_model_path: Path = root_dir / PREPARE_BASE_MODEL_UPDATED_BASE_MODEL_PATH
-    params_image_size: list = params.IMAGE_SIZE
+    params_image_size: BoxList = field(default_factory=lambda: BoxList([224, 224]))
     params_learning_rate: float = params.LEARNING_RATE
     params_include_top: bool = params.INCLUDE_TOP
     params_weights: str = params.WEIGHTS
@@ -42,7 +43,7 @@ class TrainingConfig:
     params_epochs: int = params.EPOCHS
     params_batch_size: int = params.BATCH_SIZE
     params_is_augmentation: bool = params.AUGMENTATION
-    params_image_size: list = params.IMAGE_SIZE
+    params_image_size: BoxList = field(default_factory=lambda: BoxList(params.IMAGE_SIZE))
     params_classes: int = params.CLASSES
     params_learning_rate: float = params.LEARNING_RATE
 
@@ -50,11 +51,11 @@ class TrainingConfig:
 class EvaluationConfig:
     path_of_model: Path = Path(os.path.join(training_pipeline_config.artifact_dir, TRAINING_ROOT_DIR, TRAINED_MODEL_PATH))
     training_data: Path = Path(os.path.join(training_pipeline_config.artifact_dir, DATA_INGESTION_ROOT_DIR, DATA_INGESTION_UNZIP_DIR))
-    all_params: dict = params
+    all_params: dict = field(default_factory=lambda: params)
     mlflow_uri: str = MLFLOW_URI
     dagshub_repo_owner: str = DAGSHUB_REPO_OWNER
     dagshub_repo_name: str = DAGSHUB_REPO_NAME
-    params_image_size: list = params.IMAGE_SIZE
+    params_image_size: BoxList = field(default_factory=lambda: BoxList(params.IMAGE_SIZE))
     params_batch_size: int = params.BATCH_SIZE
     params_classes: int = params.CLASSES
 
@@ -63,4 +64,3 @@ class DeploymentConfig:
     app_host : str = APP_HOST
     app_port: int = APP_PORT
     debug: bool = DEBUG
-    

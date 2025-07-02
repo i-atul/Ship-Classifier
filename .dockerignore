@@ -1,0 +1,17 @@
+# Ignore files and folders that should not be copied into the Docker image
+.git
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+logs/
+uploads/
+notebook/
+build/
+dist/
+src.egg-info/
+.ipynb_checkpoints/
+.DS_Store
+.env
+.venv
+*.log
