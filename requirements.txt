@@ -146,7 +146,7 @@ pygtrie==2.5.0
 pyparsing==3.2.3
 pyproject_hooks==1.2.0
 PySocks==1.7.1
-pytest==8.4.1
+pytest
 python-box==7.3.2
 python-dateutil==2.9.0.post0
 pytz==2025.2
