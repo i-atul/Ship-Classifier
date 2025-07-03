@@ -53,7 +53,7 @@ Visit [http://localhost:5000](http://localhost:5000) to use the web interface.
 
 ### Build the Docker Image
 ```sh
-docker build -t as135/ship-classifier .
+docker build -t <username>/<imagename> .
 ```
 
 ### Pull from Docker Hub
@@ -63,7 +63,7 @@ docker pull as135/ship-classifier
 
 ### Run with Docker
 ```sh
-docker run -p 5000:5000 as135/ship-classifier
+docker run -p 5000:5000 <username>/<imagename>
 ```
 
 ### Run with Docker Compose
