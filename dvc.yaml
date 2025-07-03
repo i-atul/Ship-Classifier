@@ -20,7 +20,7 @@ stages:
       - WEIGHTS
       - LEARNING_RATE
     outs:
-      - artifacts/prepare_base_model/base_model.h5
+      - artifacts/prepare_base_model/base_model.pth
 
   training:
     cmd: python src/components/model_trainer.py
@@ -28,14 +28,14 @@ stages:
       - src/components/model_trainer.py
       - params.yaml
       - artifacts/data_ingestion/data_ingestion
-      - artifacts/prepare_base_model/base_model.h5
+      - artifacts/prepare_base_model/base_model.pth
     params:
       - IMAGE_SIZE
       - EPOCHS
       - BATCH_SIZE
       - AUGMENTATION
     outs:
-      - artifacts/training/model.h5
+      - artifacts/training/model.pth
 
   evaluation:
     cmd: python src/components/model_evaluation.py
@@ -43,7 +43,7 @@ stages:
       - src/components/model_evaluation.py
       - params.yaml
       - artifacts/data_ingestion/data_ingestion
-      - artifacts/training/model.h5
+      - artifacts/training/model.pth
     params:
       - IMAGE_SIZE
       - BATCH_SIZE

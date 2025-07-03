@@ -1,35 +1,36 @@
 # Ship-Classifier
 
-A robust, production-ready deep learning project for multi-class ships images classification using PyTorch, DVC, and Docker. Built for reproducibility, scalability, and easy deployment.
+A robust, production-ready deep learning project for multi-class ships images classification using PyTorch, Built for reproducibility, scalability, and easy deployment.
 
 ## Project Workflow
 
 1. **Data Ingestion**: Downloads and unpacks ship image datasets.
 2. **Preprocessing**: Cleans and prepares data for training.
-3. **Model Training**: Trains a PyTorch model for multi-class ship classification.
-4. **Model Evaluation**: Evaluates model performance on validation data.
-5. **Model Deployment**: Serves predictions via a Flask API.
-6. **Experiment Tracking**: Uses DVC and MLflow for versioning and experiment management.
+3. **Prepare Base Model**: Loads a pre-trained VGG16 model.
+4. **Model Training**: Trains a PyTorch model for multi-class ship classification.
+5. **Model Evaluation**: Evaluates model performance on validation data.
+6. **Model Deployment**: Serves predictions via a Flask App.
+7. **Experiment Tracking**: Uses DVC and MLflow for versioning and experiment management.
+8. **CI/CD Integration**: Implements continuous integration and deployment using GitHub Actions for automated testing, building, and deployment.
 
 ## Supported Ship Classes
 - Cargo
 - Tanker
-- Passenger
-- Fishing
-- Military
-- Other (customizable)
+- Cruise
+
 
 ## Getting Started
 
 ### 1. Clone the Repository
 ```sh
-git clone https://github.com/your-username/Ship-Classifier.git
-cd Ship-Classifier
+git clone https://github.com/i-atul/Ships-Image-Classifier.git
+cd Ships-Image-Classifier
 ```
 
 ### 2. Install Requirements (for local development)
 ```sh
 pip install -r requirements.txt
+pip install -e .
 ```
 
 ### 3. Reproduce the Pipeline with DVC
@@ -57,7 +58,7 @@ docker build -t as135/ship-classifier .
 
 ### Pull from Docker Hub
 ```sh
-docker pull as135/ship-classifier:latest
+docker pull as135/ship-classifier
 ```
 
 ### Run with Docker
@@ -70,26 +71,6 @@ docker run -p 5000:5000 as135/ship-classifier
 docker compose up -d
 ```
 
-## Model Artifacts
-- Trained models are stored in `artifacts/training/model.h5` (or `.pth` for PyTorch).
-- The Docker image includes the trained model for inference.
-- You can mount your own model with Docker Compose using:
-  ```yaml
-  volumes:
-    - ./artifacts:/app/artifacts
-  ```
-
-## Project Structure
-```
-├── app.py                # Flask API for prediction
-├── Dockerfile            # Docker build instructions
-├── docker-compose.yml    # Multi-container orchestration
-├── dvc.yaml              # DVC pipeline stages
-├── requirements.txt      # Python dependencies
-├── src/                  # Source code (pipelines, components, utils)
-├── artifacts/            # Model artifacts and data
-└── ...
-```
 
 ## Reproducibility & MLOps
 - **DVC**: Data and model versioning

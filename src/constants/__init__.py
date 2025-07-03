@@ -15,13 +15,13 @@ DATA_INGESTION_UNZIP_DIR: str = "data_ingestion"
 
 # Prepare Base Model
 PREPARE_BASE_MODEL_ROOT_DIR: str = "prepare_base_model"
-PREPARE_BASE_MODEL_BASE_MODEL_PATH: str = "base_model.h5"
-PREPARE_BASE_MODEL_UPDATED_BASE_MODEL_PATH: str = "base_model_updated.h5"
+PREPARE_BASE_MODEL_BASE_MODEL_PATH: str = "base_model.pth"
+PREPARE_BASE_MODEL_UPDATED_BASE_MODEL_PATH: str = "base_model_updated.pth"
 
 
 # Model Trainer
 TRAINING_ROOT_DIR: str = "training"
-TRAINED_MODEL_PATH: str = "model.h5"
+TRAINED_MODEL_PATH: str = "model.pth"
 TRAINER_MODEL_PARAMS: str = os.path.join("config", "params.yaml")
 
 

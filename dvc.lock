@@ -43,7 +43,7 @@ stages:
         LEARNING_RATE: 0.01
         WEIGHTS: imagenet
     outs:
-    - path: artifacts/prepare_base_model/base_model.h5
+    - path: artifacts/prepare_base_model/base_model.pth
       hash: md5
       md5: eb0ee57bf77e759a5e134eb3d0cbd130
       size: 553441845
@@ -55,7 +55,7 @@ stages:
       md5: 73ac0b2fe5ad5ea770819c52bd00e25b.dir
       size: 141219453
       nfiles: 306
-    - path: artifacts/prepare_base_model/base_model.h5
+    - path: artifacts/prepare_base_model/base_model.pth
       hash: md5
       md5: eb0ee57bf77e759a5e134eb3d0cbd130
       size: 553441845
@@ -77,9 +77,9 @@ stages:
         - 224
         - 3
     outs:
-    - path: artifacts/training/model.h5
+    - path: artifacts/training/model.pth
       hash: md5
-      md5: 9917625c0ba710303fad2114e52eb866
+      md5: dfbbf989211de5efb6da9e34d6c7743e
       size: 537100791
   evaluation:
     cmd: python src/components/model_evaluation.py
@@ -89,9 +89,9 @@ stages:
       md5: 73ac0b2fe5ad5ea770819c52bd00e25b.dir
       size: 141219453
       nfiles: 306
-    - path: artifacts/training/model.h5
+    - path: artifacts/training/model.pth
       hash: md5
-      md5: 9917625c0ba710303fad2114e52eb866
+      md5: dfbbf989211de5efb6da9e34d6c7743e
       size: 537100791
     - path: params.yaml
       hash: md5
@@ -111,5 +111,5 @@ stages:
     outs:
     - path: scores.json
       hash: md5
-      md5: 73d84b84a01bba90723cae886f40f14a
+      md5: 5cc739f7baebdf67733860c432a5c096
       size: 73

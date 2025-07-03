@@ -18,7 +18,6 @@ RUN pip install --upgrade pip && \
     pip install -e .
 
 
-# COPY artifacts/training/model.h5 /app/artifacts/training/model.h5
 
 # Copy the rest of the code
 COPY . /app

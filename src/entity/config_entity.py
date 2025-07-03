@@ -38,7 +38,7 @@ class PrepareBaseModelConfig:
 class TrainingConfig:
     root_dir: Path = Path(os.path.join(training_pipeline_config.artifact_dir, TRAINING_ROOT_DIR))
     trained_model_path: Path = root_dir / TRAINED_MODEL_PATH
-    updated_base_model_path: Path = Path("artifacts/prepare_base_model/base_model.h5") 
+    updated_base_model_path: Path = Path("artifacts/prepare_base_model/base_model.pth") 
     training_data: Path = Path(training_pipeline_config.artifact_dir) / DATA_INGESTION_ROOT_DIR / DATA_INGESTION_UNZIP_DIR
     params_epochs: int = params.EPOCHS
     params_batch_size: int = params.BATCH_SIZE
